@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>CSET Seat Booking - Home</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <!-- <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> -->
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <style type="text/css">
+    /* body { background-color: #f7f7f7; font-family: 'Roboto'; } */
+    
+    .container { margin: 150px auto; max-width: 960px; }
+    .window {
+        font-weight: bold;
+        cursor: pointer;
+        border:1px solid #346789;
+        box-shadow: 2px 2px 10px #aaa;
+        -o-box-shadow: 2px 2px 10px #aaa;
+        -webkit-box-shadow: 2px 2px 10px #aaa;
+        -moz-box-shadow: 2px 2px 10px #aaa;
+        -moz-border-radius:0.5em;
+        border-radius:0.5em;
+        /*
+        opacity:0.8;
+        filter:alpha(opacity=80);
+        */
+        width: 10em; height: auto;
+        padding: 0.5em 0em;
+        text-align:center;
+        z-index:20; position:absolute;
+        background-color:#eeeeef;
+        color:black;
+        font-family:helvetica;
+        font-size:0.9em;
+        word-wrap:break-word;
+    }
+
+    .window:hover {
+        box-shadow: 2px 2px 10px #444;
+        -o-box-shadow: 2px 2px 10px #444;
+        -webkit-box-shadow: 2px 2px 10px #444;
+        -moz-box-shadow: 2px 2px 10px #444;
+        /*
+        opacity:0.6;
+        filter:alpha(opacity=60);
+        */
+    }
+
+    /*
+    .window > div {
+        margin-top: 19%;
+        margin-bottom: 19%;
+    }
+    */
+
+    .hidden {
+        display: none;
+    }
+
+    .collapser {
+        cursor: pointer;
+        border:1px dotted gray;
+        z-index:21;
+    }
+
+    .errorWindow {
+        border: 2px solid red;
+    }
+
+    #treemain {
+        height: 500px;
+        width: 100%;
+        position: relative;
+        overflow: auto;
+    }
+
+</style>
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center ">
+    <div class="container d-flex justify-content-between align-items-center">
+
+      <div id="logo">
+        <h1 style="color:white;">CSET Seat Booking</h1>
+        <!-- Uncomment below if you prefer to use a text logo -->
+        <!--<h1><a href="index.html">Regna</a></h1>-->
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto" href="seat_booking.html">Seat Booking</a></li>
+          <li><a class="nav-link scrollto" href="seat_allocation.html">Seat Allocation</a></li>
+          <li><a class="nav-link scrollto active" href="orgnization_tree.html">Orgnization Tree</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+    <div class="container">
+      <!-- <h2>Orgnization Tree</h2> -->
+
+      <div id="treemain">
+      
+        <div id="node_0" class="window hidden"
+             data-id="0"
+             data-parent=""
+             data-first-child="1"
+             data-next-sibling="">
+             Root
+        </div>
+      
+        <div id="node_1" class="window hidden"
+             data-id="1"
+             data-parent="0"
+             data-first-child="4"
+             data-next-sibling="2">
+             Node 1
+        </div>
+      
+        <div id="node_2" class="window hidden"
+             data-id="2"
+             data-parent="0"
+             data-first-child="6"
+             data-next-sibling="3">
+             Node 2
+        </div>
+      
+        <div id="node_3" class="window hidden"
+             data-id="3"
+             data-parent="0"
+             data-first-child=""
+             data-next-sibling="">
+             Node 3
+        </div>
+      
+        <div id="node_4" class="window hidden"
+             data-id="4"
+             data-parent="1"
+             data-first-child=""
+             data-next-sibling="5">
+             Node 1-1
+        </div>
+      
+        <div id="node_5" class="window hidden"
+             data-id="5"
+             data-parent="1"
+             data-first-child=""
+             data-next-sibling="">
+             Node 1-2
+        </div>
+      
+        <div id="node_6" class="window hidden"
+             data-id="6"
+             data-parent="2"
+             data-first-child=""
+             data-next-sibling="7">
+             Node 2-1
+        </div>
+      
+        <div id="node_7" class="window hidden"
+             data-id="7"
+             data-parent="2"
+             data-first-child=""
+             data-next-sibling="8">
+             Node 2-2
+        </div>
+      
+        <div id="node_8" class="window hidden"
+             data-id="8"
+             data-parent="2"
+             data-first-child=""
+             data-next-sibling="9">
+             Node 2-3
+        </div>
+      
+        <div id="node_9" class="window hidden"
+             data-id="9"
+             data-parent="2"
+             data-first-child=""
+             data-next-sibling="">
+             Node 2-4
+        </div>
+      
+      </div>
+    </div>
+    
+
+  </main><!-- End #main -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsPlumb/1.7.10/jsPlumb.min.js"></script>
+  <script src="plugins/tree-view-visual-connections/jsplumb-tree.js"></script>
+
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    $(document).ready(function(){
+    
+      var connectorPaintStyle = {
+        lineWidth:3,
+        strokeStyle:"#4F81BE",
+        joinstyle:"round"
+    };
+
+    var pdef = {
+      // disable dragging
+      DragOptions: null,
+      // the tree container
+      Container : "treemain"
+    };
+    
+    var plumb = jsPlumb.getInstance(pdef);
+
+      // all sizes are in pixels
+      var opts = {
+          prefix: 'node_',
+          // left margin of the root node
+          baseLeft: 24,
+          // top margin of the root node
+          baseTop: 24,
+          // node width
+          nodeWidth: 100,
+          // horizontal margin between nodes
+          hSpace: 36,
+          // vertical margin between nodes
+          vSpace: 10,
+          imgPlus: 'tree_expand.png',
+          imgMinus: 'tree_collapse.png',
+          // queste non sono tutte in pixel
+          sourceAnchor: [ 1, 0.5, 1, 0, 10, 0 ],
+          targetAnchor: "LeftMiddle",
+          sourceEndpoint: {
+              endpoint:["Image", {url: "tree_collapse.png"}],
+              cssClass:"collapser",
+              isSource:true,
+              connector:[ "Flowchart", { stub:[40, 60], gap:[10, 0], cornerRadius:5, alwaysRespectStubs:false } ],
+              connectorStyle:connectorPaintStyle,
+              enabled: false,
+              maxConnections:-1,
+              dragOptions:null
+          },
+          targetEndpoint: {
+              endpoint:"Blank",
+              maxConnections:-1,
+              dropOptions:null,
+              enabled: false,
+              isTarget:true
+          },
+          connectFunc: function(tree, node) {
+              var cid = node.data('id');
+              console.log('Connecting node ' + cid);
+          }
+      };
+      var tree = jQuery.jsPlumbTree(plumb, opts);
+      tree.init();
+      window.treemain = tree;
+
+
+      var opts = {
+        // node objects id prefix
+        prefix: 'node_',
+        // left coordinate of root node (0)
+        baseLeft: 0,
+        // top coordinate of root node (0)
+        baseTop: 0,
+        // node width
+        nodeWidth: 100,
+        // horizontal padding between nodes
+        hSpace: 36,
+        // vertical padding between nodes
+        vSpace: 10,
+        // source anchor
+        sourceAnchor: "RightMiddle",
+        // target anchor
+        targetAnchor: "LeftMiddle",
+        // source endpoint definition
+        sourceEndpoint: null,
+        // target endpoint definition
+        targetEndpoint: null,
+        // image url for plus anchor button
+        imgPlus: null,
+        // image url for minus anchor button
+        imgMinus: null,
+        // a function(this, node) to be called before making a connection
+        connectFunc: null
+      };
+    
+
+  });
+
+
+  </script>
+
+</body>
+
+</html>
