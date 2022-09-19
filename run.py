@@ -468,5 +468,51 @@ def condition(x):
     elif len(x)>=4 :
         return x[2]+x[1]  
 
+
+
+def check_floor_wing_availability(seat_no,df,dept_list):
+    conn = sqlite3.connect(':memory:')  
+    cursor= conn.cursor()
+    data=df.copy()
+    vaccancy_df=pd.DataFrame()
+    seat_clusteting=data.query("Emp_OE_Code != 'Not Applicable'")[['Parent','Child','Emp_OE_Code','Manager_OE_Code',
+       'Manager_Dept','Emp_ID']]
+    seat_clusteting["Level"]=seat_clusteting["Child"].str[:2]
+    seat_clusteting["Wing"]=seat_clusteting["Child"].str[2]+seat_clusteting["Child"].str[1]
+    seat_clusteting["Seat_No"]=seat_clusteting["Child"].str[3:]
+    tbl=cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='seat_clusteting'").fetchall()
+    if len(tbl)>0 :
+        cursor.execute("Drop table seat_clusteting")
+    seat_clusteting.to_sql(name='seat_clusteting', con=conn, index=False)
+    sql="""Select max(vacant_seats) max_vacant_seats from
+           (Select Level,Wing,sum(case when Emp_OE_Code=='0' then 1 else 0 end ) vacant_seats
+             from seat_clusteting group by Level,Wing)"""   
+    max_vacant_seats=pd.read_sql(sql, con=conn).values[0][0]
+    seat_no_list=split_seat_count(max_vacant_seats,seat_no)
+    for vac in seat_no_list:
+        sql="""WITH X AS (Select Level,Wing,vacant_seats,Manager_Dept,dept_seats FROM 
+                      (Select Level,Wing,Manager_Dept,
+                              count(1) total_seats,
+                              sum(case when Emp_OE_Code<>'0' then 1 else 0 end ) allocated_seats,
+                              sum(case when Emp_OE_Code=='0' then 1 else 0 end ) vacant_seats,
+                              sum(case when Manager_Dept in (""" + dept_list +""")  then 1 else 0 end ) dept_seats
+                       from seat_clusteting
+                       group by Level,Wing,Manager_Dept))
+               Select Level,Wing,vacant_seats from X WHERE (Level,Wing) in 
+                      (Select Level,Wing from X WHERE dept_seats>0 ) and vacant_seats>=round(""" + str(vac) + """,0)
+               Union All
+               Select Level,Wing,vacant_seats from X 
+                WHERE dept_seats==0 and vacant_seats>=round(""" + str(vac) + """,0)
+           """ 
+        temp=pd.read_sql(sql, con=conn)
+        temp=temp.drop_duplicates(keep='first')
+        temp=pd.concat([temp,vaccancy_df])
+        temp.reset_index(inplace=True,drop=True)
+        temp=temp.drop_duplicates(keep=False)
+        vaccancy_df=vaccancy_df.append(temp.head(1))
+    cursor.close()
+    conn.close()
+    return vaccancy_df
+
 if __name__ == '__main__':
    app.run('localhost', '5000', True)
