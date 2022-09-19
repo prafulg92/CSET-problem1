@@ -1179,3 +1179,16 @@ section {
   --bs-nav-link-color: none;
   --bs-nav-link-hover-color: none;
 }
+
+
+
+li[data-seatdefination*="Order Mgmt "] {
+  color: red; 
+}
+li[data-seatdefination*="Client & Data Analytics"] {
+  color: blue; 
+}
+
+li[data-seatdefination*="Business Analysis"] {
+  color: greenyellow; 
+}
