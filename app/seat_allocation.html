@@ -64,6 +64,8 @@
 
   
     <div class="container example" style="margin-top: 125px;">
+
+      <button type="button" class="btn btn-primary" onclick="seat_allocate()">Allocate Seat</button>
     <!-- <section class="inner-page pt-4" > -->
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -173,15 +175,10 @@
         $('#'+id+' ul li').each(function(key, val){
           
           data = $(val).attr('data-seatdefination')
-          console.log(typeof(data))
-          // data = data.replace('"', "'");
-          // data = JSON.stringify(data)
           
-          // console.log(data)
           if(data!==undefined){
             data = JSON.parse(data)
-            console.log(data)
-            console.log(data.department)
+          
             $(val).find('i').attr("title", 'Department: '+data.department);
           }
         })
@@ -190,6 +187,15 @@
 
     }
 
+
+function seat_allocate(){
+  alert('hi')
+  $.ajax({
+      url: "http://localhost:5000/allocate_seat",
+      success: function(seatData){
+        alert('success')
+      }});
+}
 
   </script>
 

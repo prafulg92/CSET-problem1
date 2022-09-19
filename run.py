@@ -6,6 +6,11 @@ from treelib import Node, Tree
 import sqlite3
 import warnings
 from flask_cors import CORS, cross_origin
+from treelib import Node, Tree
+import sqlite3
+
+tree = Tree()
+seat_tree = Tree()
 
 
 
@@ -304,6 +309,164 @@ def seat_allocation(oe_code):
                 var_jason[flr]['seatLayout']['colAreas']['objArea'][wing_index]['objRow'][1]['objSeat'] = rowseat
 
     return jsonify(var_jason)
+
+@app.route('/allocate_seat')
+def allocate_seat():
+    create_employee_org(data)
+    create_seat_mapping(seat)
+    for E in tree.children('Dir'):
+        subtree=tree.subtree(E.identifier)
+        print(subtree.size())
+        result=reserve_seats(subtree)
+    seat_data=convert_seat_data_to_df()
+    seat_data['floor'] = ''
+    seat_data['wing'] = ''
+    seat_data['seat_no'] = ''
+    for i in range(len(seat_data)):
+        if len(seat_data['Child'][i]) >= 3:
+            seat_data['floor'][i] = seat_data['Child'][i][:2]
+            seat_data['wing'][i] = seat_data['Child'][i][2:3]
+            seat_data['seat_no'][i] = int(seat_data['Child'][i][3:])
+
+    seat_data.to_csv("seat_mapping3.csv")
+
+def create_employee_org(data) :
+    if len(tree.nodes)==0 :
+        tree.create_node("Employee Org", 0)
+        # Creating nodes under root
+        for i, c in data.iterrows():
+            tree.create_node(c[1],c[0], parent=0,data=c[["Emp_OE_Code","Manager_OE_Code","Manager_Dept","Emp_ID"]])
+        # Moving nodes to reflect the parent-child relationship
+        for i, c in data.iterrows():
+            if c["Manager_OE_Code"] == c["Manager_OE_Code"]:
+                tree.move_node(c[0], c["Manager_OE_Code"])
+
+
+def create_seat_mapping(seat_data):
+    if len(seat_tree.nodes)==0 :
+        seat_tree.create_node("Seat Catalogue", 0)
+        # Creating nodes under root
+        for i, c in seat.iterrows():
+            seat_tree.create_node(c["Child"], c["Child"], parent=0,data=c["Allocated"])
+        # Moving nodes to reflect the parent-child relationship
+        for i, c in seat.iterrows():
+            if c["Parent"] == c["Parent"]:
+                seat_tree.move_node(c["Child"], c["Parent"])
+
+
+def reserve_seats(subtree) :
+    if validate_quota(subtree):
+        if subtree.size()>1:
+            reserve_seat=np.round(subtree.size()*0.65,0)
+        else:
+            reserve_seat=int(subtree.size())
+            print("reserve_seat : ",reserve_seat)
+        seat_df=convert_seat_data_to_df()
+        print("Requesting ",reserve_seat," seats")
+        dept_list=[]
+        for n in subtree.all_nodes_itr():
+                if len(n.data)>1:
+                    dept_list.append(n.data[2].strip())
+        dept_list=",".join("'{0}'".format(w) for w in list(set(dept_list)))
+        vaccancy_df=check_floor_wing_availability(reserve_seat,seat_df,dept_list)
+        if len(vaccancy_df) >0 :
+            for i in subtree.all_nodes() :
+                flag=0
+                for F in seat_tree.children('EON2'):
+                    if F.tag in vaccancy_df.Level.to_list():
+                        for wing in seat_tree.children(F.tag) :
+                            if wing.tag in vaccancy_df.Wing.to_list():
+                                for loc in seat_tree.children(wing.tag) :
+                                    if len(loc.data)==1 and reserve_seat>0:
+                                        #loc.data=i.data
+                                        loc.data=",".join(i.data)
+                                        # "Emp_OE_Code","Manager_OE_Code","Manager_Dept","Emp_ID"
+                                        reserve_seat=reserve_seat-1
+                                        flag=1
+                                        break
+                                if flag==1:
+                                    break
+                        if flag==1:
+                            break
+                    if flag==1:
+                        break
+            return True
+        else:
+            print("There is no Vaccancy, checked all floors")
+            return False
+    else:
+        return False
+
+
+def validate_quota(subtree):
+    print("....Validating a quota for " + str(subtree.root))
+    oe_code_list=[]
+    oe_code_count=subtree.size()
+    for n in subtree.all_nodes_itr():
+        if len(n.data)>1:
+            oe_code_list.append(n.data[0])
+            # "Emp_OE_Code","Manager_OE_Code","Manager_Dept","Emp_ID"
+    seat_oe_code=[]
+    for F in seat_tree.children('EON2'):
+        for wing in seat_tree.children(F.tag) :
+            for loc in seat_tree.children(wing.tag) :
+                #print(".....",loc.data,len(loc.data),loc.data.split(",")[0])
+                if len(loc.data)>1:
+                     #seat_oe_code.append(loc.data.['Emp_OE_Code'])
+                     #seat_oe_code.append(loc.data.get('Emp_OE_Code'))
+                    seat_oe_code.append(loc.data.split(",")[0])
+                    # "Emp_OE_Code","Manager_OE_Code","Manager_Dept","Emp_ID"
+    reserved_seats=0
+    for i in set(oe_code_list):
+        reserved_seats=reserved_seats+seat_oe_code.count(i)
+         
+    if reserved_seats>=np.round(oe_code_count*0.65,0) :
+        print("... Quota complete for "+ str(subtree.root))
+        return False
+    else:
+        print("... Quota is not complete for "+ str(subtree.root))
+        return True
+
+
+def convert_seat_data_to_df() :
+    seat_data = pd.DataFrame(columns=['Child','Allocated'])
+    seat_dic = {}
+    for n in seat_tree.all_nodes_itr():
+        temp_df = pd.DataFrame(columns=['Child','Allocated'])
+        dl = {}
+        if n.identifier!=0.0 :
+            dl['Child'] = n.identifier
+            if type(n.data) == str:
+                dl['Allocated'] = n.data
+            else:
+                dl['Allocated'] = n.data
+            t = temp_df.append(dl, ignore_index=True)
+            seat_data = seat_data.append(t, ignore_index=True)  
+    seat_data["Emp_OE_Code"]=seat_data.Allocated.str.split(",").str[0]
+    seat_data["Manager_OE_Code"]=seat_data.Allocated.str.split(",").str[1]
+    seat_data["Manager_Dept"]=seat_data.Allocated.str.split(",").str[2]
+    seat_data["Emp_ID"]="" #seat_data.Allocated.str.split(",").str[3]
+    seat_data['Parent']=seat_data['Child'].apply(condition)
+    seat_data=seat_data[['Parent','Child','Allocated','Emp_OE_Code', 'Manager_OE_Code',
+       'Manager_Dept', 'Emp_ID']]
+    return seat_data     
+
+
+def condition(x):
+    if x=='EON2':
+        return ""
+    elif x in ['L1','L2','L3','L4']:
+        return "EON2"
+    elif x in ['A1','B1','C1','D1']:
+        return 'L1'
+    elif x in ['A2','B2','C2','D2']:
+        return 'L2'
+    elif x in ['A3','B3','C3','D3']:
+        return 'L3'
+    elif x in ['A4','B4','C4','D4']:
+        return 'L4'
+    elif len(x)>=4 :
+        return x[2]+x[1]  
 
 if __name__ == '__main__':
    app.run('localhost', '5000', True)
