@@ -122,7 +122,6 @@
     $.ajax({
       url: "http://localhost:5000/get_seat_allocation/abc",
       success: function(seatData){
-        console.log('data', seatData)
         // var data = [JSON.parse(seatData[0])]
         
         loadGrid('seat_layout_floor1', seatData['L1']);
@@ -150,9 +149,14 @@
                 return Obj;
             },
             callOnSeatSelect: function (_event, _data, _selected, _element) {
+              // alert('hi')
+                // thisVal.attr("data-content", data);
                 console.log(_event);
                 console.log(_data);
                 console.log(_selected);
+                // $('li data-seatdefination=['+_data+'] i').attr("title", 'Department: '+_data.department);
+                // // _selected.attr("data-content", 'Department: '+_data.department+'</br>Manager_OE_Code: '+_data.Manager_OE_Code);
+                // $('[data-toggle="popover"]').popover();  
             },
             selectionDone: function (_array) {
                 console.log(_array);
@@ -163,9 +167,23 @@
         });
 
         $('.seat-selection').attr('style', 'width:1200px');
-        $('#'+id+' ul li.seat-row-seat.seat-yes').html('<i data-toggle="popover" data-trigger="hover" title="Department B" class="fa fa-desktop" aria-hidden="true"></i>');
-        $('#'+id+' ul li.can-select').html('<i data-toggle="popover" data-trigger="hover" title="Department A" class="fa fa-desktop" aria-hidden="true"></i>');
+        $('#'+id+' ul li.seat-row-seat.seat-yes').html('<i data-toggle="popover" class="fa fa-desktop" aria-hidden="true"></i>');
+        $('#'+id+' ul li.can-select').html('<i data-toggle="popover" class="fa fa-desktop" aria-hidden="true"></i>');
+        
+        // $('#'+id+' ul li').each(function(key, val){
+          
+        //   data = $(val).attr('data-seatdefination')
+        //   data = JSON.parse(data)
+        //   console.log(data)
+        //   // if(data!==undefined){
+        //   //   console.log(data)
+        //   //   console.log(data.department)
+        //   //   $(val).find('i').attr("title", 'Department: '+data.department);
+        //   // }
+        // })
+        
         $('[data-toggle="popover"]').popover();  
+
     }
 
 

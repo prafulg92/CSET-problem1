@@ -29,11 +29,11 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-
   <style>
-    .abc{
-      background-color: red;
-    }
+    #nav-tabContent, .tab-pane:focus
+        {
+            outline: 0;
+        }
   </style>
 </head>
 
@@ -63,17 +63,39 @@
   <main id="main">
 
   
-
-    <section class="inner-page pt-4">
-      <div class="container example">
-        <div id="seat_layout" style="margin-top:90px"></div>
+    <div class="container example" style="margin-top: 125px;">
+    <!-- <section class="inner-page pt-4" > -->
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button class="nav-link active" id="floor1-nav" data-bs-toggle="tab" data-bs-target="#floor1" type="button" role="tab" aria-controls="floor1" aria-selected="true">Floor 1</button>
+          <button class="nav-link" id="floor2-nav" data-bs-toggle="tab" data-bs-target="#floor2" type="button" role="tab" aria-controls="floor2" aria-selected="false">Floor 2</button>
+          <button class="nav-link" id="floor3-nav" data-bs-toggle="tab" data-bs-target="#floor3" type="button" role="tab" aria-controls="floor3" aria-selected="false">Floor 3</button>
+          <button class="nav-link" id="floor4-nav" data-bs-toggle="tab" data-bs-target="#floor4" type="button" role="tab" aria-controls="floor4" aria-selected="false">Floor 4</button>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="floor1" role="tabpanel" aria-labelledby="floor1-nav" tabindex="0">
+          <div id="seat_layout_floor1"></div>
+        </div>
+        <div class="tab-pane fade" id="floor2" role="tabpanel" aria-labelledby="floor2-nav" tabindex="0">
+          <div id="seat_layout_floor2"></div>
+        </div>
+        <div class="tab-pane fade" id="floor3" role="tabpanel" aria-labelledby="floor3-nav" tabindex="0">
+          <div id="seat_layout_floor3"></div>  
+        </div>
+        <div class="tab-pane fade" id="floor4" role="tabpanel" aria-labelledby="floor4-nav" tabindex="0">
+          <div id="seat_layout_floor4"></div>
+        </div>
       </div>
-    </section>
+      
+    
+  </div>
 
   </main><!-- End #main -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
+  <!-- Vendor JS Files -->
   <!-- Vendor JS Files -->
   <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
@@ -86,8 +108,6 @@
   <script src="plugins/flexible-seating-layout/src/bin/seatLayout/seatLayout.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
-
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
@@ -98,602 +118,45 @@
     //   seatData = data;
     //   loadGrid(seatData);
     // });
-    seatData =  {
-        "product_id": 46539040,
-        "freeSeating": false,
-        "tempTransId": "1ecae165f2d86315fea19963d0ded41a",
-        "seatLayout": {
-        "colAreas": {
-            "Count": 2,
-            "intMaxSeatId": 43,
-            "intMinSeatId": 2,
-            "objArea": [
-            {
-              "AreaDesc": "Wing A",
-              "AreaCode": "0000000003",
-              "AreaNum": "1",
-              "HasCurrentOrder": true,
-              "objRow": [
-                {
-                    "GridRowId": 1,
-                    "PhyRowId": "A",
-                    "objSeat": [
-                    {
-                        "GridSeatNum": 1,
-                        "SeatStatus": "0",
-                        "seatNumber": 1
-                    },
-                    {
-                        "GridSeatNum": 2,
-                        "SeatStatus": "0",
-                        "seatNumber": 2
-                    },
-                    {
-                        "GridSeatNum": 3,
-                        "SeatStatus": "0",
-                        "seatNumber": 3
-                    },
-                    {
-                        "GridSeatNum": 4,
-                        "SeatStatus": "0",
-                        "seatNumber": 4
-                    },
-                    {
-                        "GridSeatNum": 5,
-                        "SeatStatus": "0",
-                        "seatNumber": 5
-                    },
-                    {
-                        "GridSeatNum": 6,
-                        "SeatStatus": "0",
-                        "seatNumber": 6
-                    },
-                    {
-                        "GridSeatNum": 7,
-                        "SeatStatus": "0",
-                        "seatNumber": 7
-                    },
-                    {
-                        "GridSeatNum": 8,
-                        "SeatStatus": "0",
-                        "seatNumber": 8
-                    },
-                    {
-                        "GridSeatNum": 9,
-                        "SeatStatus": "0",
-                        "seatNumber": 9
-                    },
-                    {
-                        "GridSeatNum": 10,
-                        "SeatStatus": "0",
-                        "seatNumber": 10
-                    },
-                    {
-                        "GridSeatNum": 11,
-                        "SeatStatus": "0",
-                        "seatNumber": 11
-                    },
-                    {
-                        "GridSeatNum": 12,
-                        "SeatStatus": "0",
-                        "seatNumber": 12
-                    },
-                    {
-                        "GridSeatNum": 13,
-                        "SeatStatus": "0",
-                        "seatNumber": 13
-                    },
-                    {
-                        "GridSeatNum": 33,
-                        "SeatStatus": "1",
-                        "seatNumber": 14
-                    },
-                    {
-                        "GridSeatNum": 34,
-                        "SeatStatus": "0",
-                        "seatNumber": 15
-                    },
-                    {
-                        "GridSeatNum": 35,
-                        "SeatStatus": "0",
-                        "seatNumber": 16
-                    },
-                    {
-                        "GridSeatNum": 36,
-                        "SeatStatus": "0",
-                        "seatNumber": 17
-                    },
-                    {
-                        "GridSeatNum": 37,
-                        "SeatStatus": "0",
-                        "seatNumber": 18
-                    },
-                    {
-                        "GridSeatNum": 38,
-                        "SeatStatus": "0",
-                        "seatNumber": 19
-                    },
-                    {
-                        "GridSeatNum": 39,
-                        "SeatStatus": "0",
-                        "seatNumber": 20
-                    },
-                    {
-                        "GridSeatNum": 40,
-                        "SeatStatus": "0",
-                        "seatNumber": 21
-                    },
-                    {
-                        "GridSeatNum": 41,
-                        "SeatStatus": "0",
-                        "seatNumber": 22
-                    },
-                    {
-                        "GridSeatNum": 42,
-                        "SeatStatus": "0",
-                        "seatNumber": 23
-                    }
-                    ]
-                },
-                {
-                    "GridRowId": 2,
-                    "PhyRowId": "B",
-                    "objSeat": [
-                    {
-                        "GridSeatNum": 1,
-                        "SeatStatus": "0",
-                        "seatNumber": 1
-                    },
-                    {
-                        "GridSeatNum": 2,
-                        "SeatStatus": "0",
-                        "seatNumber": 2
-                    },
-                    {
-                        "GridSeatNum": 3,
-                        "SeatStatus": "0",
-                        "seatNumber": 3
-                    },
-                    {
-                        "GridSeatNum": 4,
-                        "SeatStatus": "0",
-                        "seatNumber": 4
-                    },
-                    {
-                        "GridSeatNum": 8,
-                        "SeatStatus": "0",
-                        "seatNumber": 5
-                    },
-                    {
-                        "GridSeatNum": 9,
-                        "SeatStatus": "0",
-                        "seatNumber": 6
-                    },
-                    {
-                        "GridSeatNum": 10,
-                        "SeatStatus": "0",
-                        "seatNumber": 7
-                    },
-                    {
-                        "GridSeatNum": 11,
-                        "SeatStatus": "0",
-                        "seatNumber": 8
-                    },
-                    {
-                        "GridSeatNum": 12,
-                        "SeatStatus": "0",
-                        "seatNumber": 9
-                    },
-                    {
-                        "GridSeatNum": 13,
-                        "SeatStatus": "0",
-                        "seatNumber": 10
-                    },
-                    {
-                        "GridSeatNum": 14,
-                        "SeatStatus": "0",
-                        "seatNumber": 11
-                    },
-                    {
-                        "GridSeatNum": 15,
-                        "SeatStatus": "0",
-                        "seatNumber": 12
-                    },
-                    {
-                        "GridSeatNum": 16,
-                        "SeatStatus": "0",
-                        "seatNumber": 13
-                    },
-                    {
-                        "GridSeatNum": 31,
-                        "SeatStatus": "0",
-                        "seatNumber": 14
-                    },
-                    {
-                        "GridSeatNum": 32,
-                        "SeatStatus": "0",
-                        "seatNumber": 15
-                    },
-                    {
-                        "GridSeatNum": 33,
-                        "SeatStatus": "0",
-                        "seatNumber": 16
-                    },
-                    {
-                        "GridSeatNum": 34,
-                        "SeatStatus": "0",
-                        "seatNumber": 17
-                    },
-                    {
-                        "GridSeatNum": 35,
-                        "SeatStatus": "0",
-                        "seatNumber": 18
-                    },
-                    {
-                        "GridSeatNum": 36,
-                        "SeatStatus": "0",
-                        "seatNumber": 19
-                    },
-                    {
-                        "GridSeatNum": 39,
-                        "SeatStatus": "0",
-                        "seatNumber": 20
-                    },
-                    {
-                        "GridSeatNum": 40,
-                        "SeatStatus": "0",
-                        "seatNumber": 21
-                    },
-                    {
-                        "GridSeatNum": 41,
-                        "SeatStatus": "0",
-                        "seatNumber": 22
-                    },
-                    {
-                        "GridSeatNum": 42,
-                        "SeatStatus": "0",
-                        "seatNumber": 23
-                    }
-                    ]
-                },
-              ]
-            },
-            {
-              "AreaDesc": "Wing B",
-              "AreaCode": "0000000003",
-              "AreaNum": "2",
-              "HasCurrentOrder": true,
-              "objRow": [
-                {
-                    "GridRowId": 1,
-                    "PhyRowId": "N",
-                    "objSeat": [
-                    {
-                        "GridSeatNum": 3,
-                        "SeatStatus": "0",
-                        "seatNumber": 1
-                    },
-                    {
-                        "GridSeatNum": 4,
-                        "SeatStatus": "0",
-                        "seatNumber": 2
-                    },
-                    {
-                        "GridSeatNum": 5,
-                        "SeatStatus": "0",
-                        "seatNumber": 3
-                    },
-                    {
-                        "GridSeatNum": 6,
-                        "SeatStatus": "0",
-                        "seatNumber": 4
-                    },
-                    {
-                        "GridSeatNum": 7,
-                        "SeatStatus": "0",
-                        "seatNumber": 5
-                    },
-                    {
-                        "GridSeatNum": 8,
-                        "SeatStatus": "0",
-                        "seatNumber": 6
-                    },
-                    {
-                        "GridSeatNum": 9,
-                        "SeatStatus": "0",
-                        "seatNumber": 7
-                    },
-                    {
-                        "GridSeatNum": 10,
-                        "SeatStatus": "0",
-                        "seatNumber": 8
-                    },
-                    {
-                        "GridSeatNum": 11,
-                        "SeatStatus": "0",
-                        "seatNumber": 9
-                    },
-                    {
-                        "GridSeatNum": 16,
-                        "SeatStatus": "0",
-                        "seatNumber": 10
-                    },
-                    {
-                        "GridSeatNum": 17,
-                        "SeatStatus": "0",
-                        "seatNumber": 11
-                    },
-                    {
-                        "GridSeatNum": 18,
-                        "SeatStatus": "0",
-                        "seatNumber": 12
-                    },
-                    {
-                        "GridSeatNum": 19,
-                        "SeatStatus": "0",
-                        "seatNumber": 13
-                    },
-                    {
-                        "GridSeatNum": 20,
-                        "SeatStatus": "0",
-                        "seatNumber": 14
-                    },
-                    {
-                        "GridSeatNum": 21,
-                        "SeatStatus": "0",
-                        "seatNumber": 15
-                    },
-                    {
-                        "GridSeatNum": 22,
-                        "SeatStatus": "0",
-                        "seatNumber": 16
-                    },
-                    {
-                        "GridSeatNum": 23,
-                        "SeatStatus": "0",
-                        "seatNumber": 17
-                    },
-                    {
-                        "GridSeatNum": 24,
-                        "SeatStatus": "0",
-                        "seatNumber": 18
-                    },
-                    {
-                        "GridSeatNum": 25,
-                        "SeatStatus": "0",
-                        "seatNumber": 19
-                    },
-                    {
-                        "GridSeatNum": 26,
-                        "SeatStatus": "0",
-                        "seatNumber": 20
-                    },
-                    {
-                        "GridSeatNum": 27,
-                        "SeatStatus": "0",
-                        "seatNumber": 21
-                    },
-                    {
-                        "GridSeatNum": 28,
-                        "SeatStatus": "0",
-                        "seatNumber": 22
-                    },
-                    {
-                        "GridSeatNum": 29,
-                        "SeatStatus": "0",
-                        "seatNumber": 23
-                    },
-                    {
-                        "GridSeatNum": 32,
-                        "SeatStatus": "0",
-                        "seatNumber": 24
-                    },
-                    {
-                        "GridSeatNum": 33,
-                        "SeatStatus": "0",
-                        "seatNumber": 25
-                    },
-                    {
-                        "GridSeatNum": 34,
-                        "SeatStatus": "0",
-                        "seatNumber": 26
-                    },
-                    {
-                        "GridSeatNum": 35,
-                        "SeatStatus": "0",
-                        "seatNumber": 27
-                    },
-                    {
-                        "GridSeatNum": 36,
-                        "SeatStatus": "0",
-                        "seatNumber": 28
-                    },
-                    {
-                        "GridSeatNum": 37,
-                        "SeatStatus": "0",
-                        "seatNumber": 29
-                    },
-                    {
-                        "GridSeatNum": 38,
-                        "SeatStatus": "0",
-                        "seatNumber": 30
-                    },
-                    {
-                        "GridSeatNum": 39,
-                        "SeatStatus": "0",
-                        "seatNumber": 31
-                    },
-                    {
-                        "GridSeatNum": 40,
-                        "SeatStatus": "0",
-                        "seatNumber": 32
-                    }
-                    ]
-                },
-                {
-                    "GridRowId": 2,
-                    "PhyRowId": "O",
-                    "objSeat": [
-                    {
-                        "GridSeatNum": 7,
-                        "SeatStatus": "0",
-                        "seatNumber": 1
-                    },
-                    {
-                        "GridSeatNum": 8,
-                        "SeatStatus": "0",
-                        "seatNumber": 2
-                    },
-                    {
-                        "GridSeatNum": 9,
-                        "SeatStatus": "0",
-                        "seatNumber": 3
-                    },
-                    {
-                        "GridSeatNum": 10,
-                        "SeatStatus": "0",
-                        "seatNumber": 4
-                    },
-                    {
-                        "GridSeatNum": 11,
-                        "SeatStatus": "0",
-                        "seatNumber": 5
-                    },
-                    {
-                        "GridSeatNum": 16,
-                        "SeatStatus": "0",
-                        "seatNumber": 6
-                    },
-                    {
-                        "GridSeatNum": 17,
-                        "SeatStatus": "0",
-                        "seatNumber": 7
-                    },
-                    {
-                        "GridSeatNum": 18,
-                        "SeatStatus": "0",
-                        "seatNumber": 8
-                    },
-                    {
-                        "GridSeatNum": 19,
-                        "SeatStatus": "0",
-                        "seatNumber": 9
-                    },
-                    {
-                        "GridSeatNum": 20,
-                        "SeatStatus": "0",
-                        "seatNumber": 10
-                    },
-                    {
-                        "GridSeatNum": 21,
-                        "SeatStatus": "0",
-                        "seatNumber": 11
-                    },
-                    {
-                        "GridSeatNum": 22,
-                        "SeatStatus": "0",
-                        "seatNumber": 12
-                    },
-                    {
-                        "GridSeatNum": 23,
-                        "SeatStatus": "0",
-                        "seatNumber": 13
-                    },
-                    {
-                        "GridSeatNum": 24,
-                        "SeatStatus": "0",
-                        "seatNumber": 14
-                    },
-                    {
-                        "GridSeatNum": 25,
-                        "SeatStatus": "0",
-                        "seatNumber": 15
-                    },
-                    {
-                        "GridSeatNum": 26,
-                        "SeatStatus": "0",
-                        "seatNumber": 16
-                    },
-                    {
-                        "GridSeatNum": 27,
-                        "SeatStatus": "0",
-                        "seatNumber": 17
-                    },
-                    {
-                        "GridSeatNum": 28,
-                        "SeatStatus": "0",
-                        "seatNumber": 18
-                    },
-                    {
-                        "GridSeatNum": 29,
-                        "SeatStatus": "0",
-                        "seatNumber": 19
-                    },
-                    {
-                        "GridSeatNum": 32,
-                        "SeatStatus": "0",
-                        "seatNumber": 20
-                    },
-                    {
-                        "GridSeatNum": 33,
-                        "SeatStatus": "0",
-                        "seatNumber": 21
-                    },
-                    {
-                        "GridSeatNum": 34,
-                        "SeatStatus": "0",
-                        "seatNumber": 22
-                    },
-                    {
-                        "GridSeatNum": 35,
-                        "SeatStatus": "0",
-                        "seatNumber": 23
-                    },
-                    {
-                        "GridSeatNum": 36,
-                        "SeatStatus": "0",
-                        "seatNumber": 24
-                    }
-                    ]
-                }
-              ]
-            }
-          ]
-        }
-        },
-        "areas": [],
-        "groupedSeats": []
-    }
 
-    loadGrid(seatData);
-
-    $('.seat-selection').attr('style', 'width:1200px');
-    $('#seat_layout ul li.seat-row-seat.seat-yes').html('<i class="fa fa-desktop" aria-hidden="true"></i>');
-    $('#seat_layout ul li.can-select').html('<i class="fa fa-desktop" aria-hidden="true"></i>');
+    $.ajax({
+      url: "http://localhost:5000/get_seat_allocation/abc",
+      success: function(seatData){
+        // var data = [JSON.parse(seatData[0])]
         
+        loadGrid('seat_layout_floor1', seatData['L1']);
+        loadGrid('seat_layout_floor2', seatData['L2']);
+        loadGrid('seat_layout_floor3', seatData['L3']);
+        loadGrid('seat_layout_floor4', seatData['L4']);
+      }});
   });
 
-  function loadGrid(seatData) {
-        $('#seat_layout').seatLayout({
+  function loadGrid(id, seatData) {
+        $('#'+id).seatLayout({
             data: seatData,
-            showActionButtons:true,
+            showActionButtons:false,
             classes : {
                 doneBtn : '',
                 cancelBtn : '',
                 row:'',
                 area:'',
-                screen:'',
+                screen:'hide-screen',
                 seat:''
             },
-            numberOfSeat: 1,
+            numberOfSeat: 0,
             callOnSeatRender: function (Obj) {
                 //modify seat object if require and return it;
                 return Obj;
             },
             callOnSeatSelect: function (_event, _data, _selected, _element) {
+              // alert('hi')
+                // thisVal.attr("data-content", data);
                 console.log(_event);
                 console.log(_data);
                 console.log(_selected);
+                // $('li data-seatdefination=['+_data+'] i').attr("title", 'Department: '+_data.department);
+                // // _selected.attr("data-content", 'Department: '+_data.department+'</br>Manager_OE_Code: '+_data.Manager_OE_Code);
+                // $('[data-toggle="popover"]').popover();  
             },
             selectionDone: function (_array) {
                 console.log(_array);
@@ -702,10 +165,26 @@
                 return false;
             }
         });
+
+        $('.seat-selection').attr('style', 'width:1200px');
+        $('#'+id+' ul li.seat-row-seat.seat-yes').html('<i data-toggle="popover" class="fa fa-desktop" aria-hidden="true"></i>');
+        $('#'+id+' ul li.can-select').html('<i data-toggle="popover" class="fa fa-desktop" aria-hidden="true"></i>');
+        
+        // $('#'+id+' ul li').each(function(key, val){
+          
+        //   data = $(val).attr('data-seatdefination')
+        //   data = JSON.parse(data)
+        //   console.log(data)
+        //   // if(data!==undefined){
+        //   //   console.log(data)
+        //   //   console.log(data.department)
+        //   //   $(val).find('i').attr("title", 'Department: '+data.department);
+        //   // }
+        // })
+        
+        $('[data-toggle="popover"]').popover();  
+
     }
-
-
-    
 
 
   </script>
