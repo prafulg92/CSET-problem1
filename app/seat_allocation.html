@@ -167,20 +167,23 @@
         });
 
         $('.seat-selection').attr('style', 'width:1200px');
-        $('#'+id+' ul li.seat-row-seat.seat-yes').html('<i data-toggle="popover" class="fa fa-desktop" aria-hidden="true"></i>');
-        $('#'+id+' ul li.can-select').html('<i data-toggle="popover" class="fa fa-desktop" aria-hidden="true"></i>');
+        $('#'+id+' ul li.seat-row-seat.seat-yes').html('<i data-toggle="popover" data-trigger="hover" class="fa fa-desktop" aria-hidden="true"></i>');
+        $('#'+id+' ul li.can-select').html('<i data-toggle="popover" data-trigger="hover" class="fa fa-desktop" aria-hidden="true"></i>');
         
         $('#'+id+' ul li').each(function(key, val){
           
           data = $(val).attr('data-seatdefination')
-          data = JSON.stringify(data)
-          data = JSON.parse(data)
-          console.log(data)
-          // if(data!==undefined){
-          //   console.log(data)
-          //   console.log(data.department)
-          //   $(val).find('i').attr("title", 'Department: '+data.department);
-          // }
+          console.log(typeof(data))
+          // data = data.replace('"', "'");
+          // data = JSON.stringify(data)
+          
+          // console.log(data)
+          if(data!==undefined){
+            data = JSON.parse(data)
+            console.log(data)
+            console.log(data.department)
+            $(val).find('i').attr("title", 'Department: '+data.department);
+          }
         })
         
         $('[data-toggle="popover"]').popover();  
